@@ -13,7 +13,7 @@ blocks:
             - checkout
             - cd MathApp
             - echo "$DOCKER_PASSWORD" | docker login  --username "$DOCKER_USERNAME" --password-stdin
-            - '#docker pull $DOCKER_USERNAME/mathapp:latest'
+            - 'docker pull $DOCKER_USERNAME/mathapp:latest || true'
             - 'docker build -f Dockerfile --cache-from $DOCKER_USERNAME/mathapp:latest -t $DOCKER_USERNAME/mathapp:latest .'
             - 'docker push $DOCKER_USERNAME/mathapp:latest'
       secrets:
