@@ -19,7 +19,9 @@ blocks:
       secrets:
         - name: do-k8s
         - name: dockerhub
-      env_vars: []
+      env_vars:
+        - name: KUBECONFIG
+          value: /home/semaphore/.kube/dok8s.yaml
   - name: Tag latest release
     task:
       jobs:
