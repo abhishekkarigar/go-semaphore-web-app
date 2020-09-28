@@ -30,7 +30,7 @@ blocks:
           value: '-mod=vendor'
       prologue:
         commands:
-          - scm-version go 1.14
+          - sem-version go 1.14
           - checkout
           - cd MathApp/src
           - 'cache restore vendor-$SEMAPHORE_GIT_BRANCH-$(checksum go.mod),vendor-$SEMAPHORE_GIT_BRANCH,vendor-master'
