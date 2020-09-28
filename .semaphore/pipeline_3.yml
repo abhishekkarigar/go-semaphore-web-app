@@ -1,0 +1,29 @@
+version: v1.0
+name: Pipeline 3
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: deploy to kubernetes
+    task:
+      jobs:
+        - name: Deploy
+          commands:
+            - 'checkout '
+            - cd MathApp
+            - kubectl get nodes
+            - kubectl get pods
+            - envsubst < deployment.yml | tree deployment.yml
+            - kubectl apply -f deployment.yml
+      secrets:
+        - name: do-k8s
+        - name: dockerhub
+      env_vars:
+        - name: KUBECONFIG
+          value: /c/Users/karigar/.kube/config
+  - name: Tag latest release
+    task:
+      jobs:
+        - name: docker tag latest
+          commands: []
