@@ -11,6 +11,7 @@ blocks:
         - name: Build 1
           commands:
             - checkout
+            - cd MathApp/src
             - echo "$DOCKER_PASSWORD" | docker login  --username "$DOCKER_USERNAME" --password-stdin
             - '#docker pull $DOCKER_USERNAME/mathapp:latest'
             - 'docker build -f Dockerfile --cache-from $DOCKER_USERNAME/mathapp:latest -t $DOCKER_USERNAME/mathapp:latest .'
